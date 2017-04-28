@@ -17,11 +17,7 @@ import java.sql.SQLException;
  */
 public class ReadUserLabelToMysql {
 
-    public static void main(String[] args) {
-        readUserLabelToMysql();
-    }
-
-    private static void readUserLabelToMysql() {
+    public static void readUserLabelToMysql() {
         // 读取文件
         String userVectorPath = ReadUserLabelToMysql.class.getResource("/data/userLabel").getPath();
 

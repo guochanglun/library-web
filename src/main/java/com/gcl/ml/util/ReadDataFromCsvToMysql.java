@@ -12,13 +12,7 @@ import java.sql.SQLException;
  */
 public class ReadDataFromCsvToMysql {
 
-    public static void main(String[] args) {
-        readRatingCsvToMysql();
-
-        readBookCsvToMysql();
-    }
-
-    private static void readBookCsvToMysql() {
+    public static void readBookCsvToMysql() {
         String userCsvPath = ReadDataFromCsvToMysql.class.getResource("/data/BX-Books.csv").getPath();
 
         File file = new File(userCsvPath);
@@ -103,7 +97,7 @@ public class ReadDataFromCsvToMysql {
         }
     }
 
-    private static void readRatingCsvToMysql() {
+    public static void readRatingCsvToMysql() {
 
         String userCsvPath = ReadDataFromCsvToMysql.class.getResource("/data/BX-Book-Ratings.csv").getPath();
 
