@@ -1,0 +1,128 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>乐享其成</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css"/>
+
+    <link rel="stylesheet" th:href="@{css/main.css}"/>
+
+    <script th:src="@{js/jquery.min.js}"></script>
+    <script th:src="@{js/canvas-particle.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    <script th:src="@{js/subscription.js}"></script>
+
+</head>
+<body>
+<!-- 反馈 -->
+<div id="advice-modal" class="modal">
+    <div class="modal-content">
+        <form id="advice-form">
+            <div class="input-field col s6">
+                <textarea id="advice" name="advice" class="materialize-textarea"></textarea>
+                <label for="advice">说说您的想法....</label>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:;" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+        <a id="btn-advice" href="javascript:;" class="waves-effect waves-green btn-flat">提交</a>
+    </div>
+</div>
+<!-- 反馈 -->
+
+<!-- 悬浮按钮 -->
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating modal-trigger btn-large tooltipped waves-effect waves-light"
+       data-position="left" href="#advice-modal" data-delay="20" data-tooltip="说说你的想法吧">
+        <i class="large mdi-editor-mode-edit"></i>
+    </a>
+</div>
+<!-- 悬浮按钮 -->
+
+<!-- 手机菜单 -->
+<ul class="side-nav" id="btn-phone">
+    <a class="waves-effect waves-teal btn-flat teal lighten-2 white-text" href="/home">乐享其成</a>
+    <a class="waves-effect waves-teal btn-flat borrow" href="/borrow">我的借阅</a>
+    <a class="waves-effect waves-teal btn-flat" href="/subscription">书籍订阅</a>
+    <a class="waves-effect waves-teal btn-flat" href="/mine">我的信息</a>
+    <a class="waves-effect waves-teal btn-flat logout" href="javascript:;">退出登录</a>
+</ul>
+<!-- 手机菜单 -->
+
+<!-- 用户操作 -->
+<ul id='user-dropdown' class='dropdown-content'>
+    <li><a href="/mine">我的信息</a></li>
+    <li class="logout"><a href="javascript:;">退出登录</a></li>
+</ul>
+<!-- 用户操作 -->
+
+<!-- 登录图书馆 -->
+<div id="loginLibrary" class="modal">
+    <div class="modal-content">
+        <form id="login_form">
+            <div class="input-field col s6">
+                <i class="mdi-action-account-circle prefix"></i>
+                <input id="snum" name="snum" type="text" class="validate"/>
+                <label for="snum">学号</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="mdi-image-filter-vintage prefix"></i>
+                <input id="spwd" name="spwd" type="password" class="validate"/>
+                <label for="spwd">密码</label>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:;" class="modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+        <a id="btn-login" href="javascript:;" class="waves-effect waves-green btn-flat">登录</a>
+    </div>
+</div>
+<!-- 登录图书馆 -->
+
+<!-- 导航条 -->
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper white header">
+            <a href="/home" class="brand-logo grey-text text-darken-3">乐享其成</a>
+            <a href="#" data-activates="btn-phone" class="button-collapse">
+                <i class="mdi-navigation-menu black-text"></i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li class="borrow"><a class="grey-text text-darken-3" href="javascript:;">我的借阅</a></li>
+                <li><a class="grey-text text-darken-3" href="/subscription">书籍订阅</a></li>
+                <li><a class="grey-text text-darken-3" href="/recommend">智能推荐</a></li>
+                <li>
+                    <a class="grey-text text-darken-3 dropdown-button" data-activates="user-dropdown"
+                       href="javascript:;" data-beloworigin="true">
+                        <i class="mdi-action-perm-identity"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- 导航条 -->
+
+<!-- 内容 -->
+<div class="container">
+    <div class="row">
+        <ul class="collection with-header z-depth-1">
+            <li class="collection-header" th:if="${#lists.size(subscriptions) == 0}">空空如也.....</li>
+            <li class="collection-header" th:if="${#lists.size(subscriptions) != 0}">订阅书籍</li>
+            <li class="collection-item" th:each="book:${subscriptions}">
+                <span th:text="${book.bookName}"></span>
+                <div class="secondary-content">
+                    <a title="删除订阅" class="delete" href="javascript:;" th:attr="data-id=${book.id}">删除</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 内容 -->
+</body>
+</html>
