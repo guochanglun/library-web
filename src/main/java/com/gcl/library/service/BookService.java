@@ -164,6 +164,11 @@ public class BookService {
             Element ele = eles.get(i);
             b = new BorrowBook();
             Elements tds = ele.select("td");
+
+            if (tds.size() < 6) {
+                continue;
+            }
+
             //条码号
             b.setNum(tds.get(0).text());
             //书名
@@ -179,7 +184,6 @@ public class BookService {
         }
         return list;
     }
-
 
     public HttpClient getClient() {
         return client;

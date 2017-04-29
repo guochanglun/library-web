@@ -108,6 +108,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
 
@@ -127,5 +128,6 @@
                 </executions>
             </plugin>
         </plugins>
+
     </build>
 </project>

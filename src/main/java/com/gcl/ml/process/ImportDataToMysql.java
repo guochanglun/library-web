@@ -4,6 +4,7 @@ import com.gcl.ml.util.ReadDataFromCsvToMysql;
 import com.gcl.ml.util.ReadUserLabelToMysql;
 
 /**
+ * 导入数据
  * Created by 14557 on 2017/4/28.
  */
 public class ImportDataToMysql {
